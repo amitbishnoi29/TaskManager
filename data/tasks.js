@@ -1,0 +1,81 @@
+
+export const taskData = [
+    {
+      id: 1,
+      title: "Finish project report",
+      description: "Complete the final report for the client project",
+      dueDate: "2024-08-10",
+      priority: "High",
+      location: "Office",
+    },
+    {
+      id: 2,
+      title: "Grocery shopping",
+      description: "Buy groceries for the week",
+      dueDate: "2024-08-09",
+      priority: "Low",
+    },
+    {
+      id: 3,
+      title: "Prepare for meeting",
+      description: "Prepare slides for the team meeting",
+      dueDate: "2024-08-12",
+      priority: "Medium",
+      location: "Conference Room",
+    },
+    {
+      id: 4,
+      title: "Doctor appointment",
+      description: "Routine check-up with Dr. Smith",
+      dueDate: "2024-08-15",
+      priority: "High",
+      location: "Downtown Clinic",
+    },
+    {
+      id: 5,
+      title: "Book flight tickets",
+      description: "Book tickets for vacation trip",
+      dueDate: "2024-08-20",
+      priority: "Medium",
+    },
+    {
+      id: 6,
+      title: "Pay utility bills",
+      description: "Pay electricity and water bills",
+      dueDate: "2024-08-07",
+      priority: "High",
+    },
+    {
+      id: 7,
+      title: "Read new book",
+      description: "Read the latest book by favorite author",
+      dueDate: "2024-08-25",
+      priority: "Low",
+    },
+    {
+      id: 8,
+      title: "Car service",
+      description: "Take the car for routine service",
+      dueDate: "2024-08-30",
+      priority: "Medium",
+      location: "Service Center",
+    },
+    {
+      id: 9,
+      title: "Visit parents",
+      description: "Visit parents over the weekend",
+      dueDate: "2024-08-13",
+      priority: "Low",
+      location: "Parents' House",
+    },
+    {
+      id: 10,
+      title: "Submit tax documents",
+      description: "Submit necessary documents for tax filing",
+      dueDate: "2024-08-05",
+      priority: "High",
+      location: "Office",
+    },
+    
+  ];
+  
