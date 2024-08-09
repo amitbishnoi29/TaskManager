@@ -9,8 +9,8 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 export const metadata = {
-  title: "Amit Bishnoi | Portfolio",
-  description: "A Nextjs portfolio",
+  title: "Task manger",
+  description: "A  simple task manager",
 };
 
 export default function RootLayout({ children }) {

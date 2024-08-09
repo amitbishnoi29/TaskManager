@@ -7,20 +7,23 @@ html {
 }
 
 body {
-  background: #030117;
+  background: var(--color-bg-fallback);
   background: var(--color-bg-webkit);
   background: var(--color-bg);
   color: var(--color-text);
 }
 
 :root {
-  --color-bg: linear-gradient(to right,
+  /* --color-bg: linear-gradient(to right,
       #f9f0fd,
       #ffffff);
-  ;
+  ; */
+  --color-bg: linear-gradient(90deg, rgba(223, 222, 245, 1) 0%, rgba(245, 245, 247, 1) 35%, rgba(223, 229, 230, 1) 100%);
   --color-bg-webkit: linear-gradient(to right,
       #f9f0fd,
       #ffffff);
+  --color-bg-fallback: #ffffff;
+  --color-text: #111111;
 }
 
 .dark {
@@ -32,6 +35,7 @@ body {
       #030117,
       #2c2d3d);
   ;
+  --color-bg-fallback: #020113;
   --color-text: #ffffff;
 }
 
