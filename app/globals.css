@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+/* html {
   transition: background-color 0.5s ease;
 }
 
@@ -14,30 +14,24 @@ body {
 }
 
 :root {
-  /* --color-bg: linear-gradient(to right,
-      #f9f0fd,
-      #ffffff);
-  ; */
-  --color-bg: linear-gradient(90deg, rgba(223, 222, 245, 1) 0%, rgba(245, 245, 247, 1) 35%, rgba(223, 229, 230, 1) 100%);
-  --color-bg-webkit: linear-gradient(to right,
-      #f9f0fd,
-      #ffffff);
+
+  --color-bg: linear-gradient(
+    90deg,
+    rgba(223, 222, 245, 1) 0%,
+    rgba(245, 245, 247, 1) 35%,
+    rgba(223, 229, 230, 1) 100%
+  );
+  --color-bg-webkit: linear-gradient(to right, #f9f0fd, #ffffff);
   --color-bg-fallback: #ffffff;
   --color-text: #111111;
 }
 
 .dark {
-  --color-bg: linear-gradient(to right,
-      #030117,
-      #2c2d3d);
-  ;
-  --color-bg-webkit: linear-gradient(to right,
-      #030117,
-      #2c2d3d);
-  ;
+  --color-bg: linear-gradient(to right, #030117, #2c2d3d);
+  --color-bg-webkit: linear-gradient(to right, #030117, #2c2d3d);
   --color-bg-fallback: #020113;
   --color-text: #ffffff;
-}
+} */
 
 @layer utilities {
   .text-balance {
@@ -48,22 +42,20 @@ body {
 .black-gradient {
   background: #000000;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right,
-      #434343,
-      #000000);
+  background: -webkit-linear-gradient(to right, #434343, #000000);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right,
-      #434343,
-      #000000);
+  background: linear-gradient(to right, #434343, #000000);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .violet-gradient {
   background: #804dee;
   background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
-  background: -webkit-linear-gradient(-90deg,
-      #804dee 0%,
-      rgba(60, 51, 80, 0) 100%);
+  background: -webkit-linear-gradient(
+    -90deg,
+    #804dee 0%,
+    rgba(60, 51, 80, 0) 100%
+  );
 }
 
 .green-pink-gradient {
@@ -75,13 +67,32 @@ body {
 .orange-text-gradient {
   background: #f12711;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top,
-      #f12711,
-      #f5af19);
+  background: -webkit-linear-gradient(to top, #f12711, #f5af19);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top,
-      #f12711,
-      #f5af19);
+  background: linear-gradient(to top, #f12711, #f5af19);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.red-text-gradient {
+  background: #f12711;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #f12711, #f95757);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #f12711, #f95757);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.yellow-text-gradient {
+  background: #f7b733;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #f7b733, #fc4a1a);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #f7b733, #fc4a1a);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   background-clip: text;
@@ -91,13 +102,9 @@ body {
 .green-text-gradient {
   background: #11998e;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top,
-      #11998e,
-      #38ef7d);
+  background: -webkit-linear-gradient(to top, #11998e, #38ef7d);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top,
-      #11998e,
-      #38ef7d);
+  background: linear-gradient(to top, #11998e, #38ef7d);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   background-clip: text;
@@ -108,13 +115,9 @@ body {
   /* background: -webkit-linear-gradient(#eee, #333); */
   background: #56ccf2;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top,
-      #2f80ed,
-      #56ccf2);
+  background: -webkit-linear-gradient(to top, #2f80ed, #56ccf2);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top,
-      #2f80ed,
-      #56ccf2);
+  background: linear-gradient(to top, #2f80ed, #56ccf2);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   background-clip: text;
@@ -124,15 +127,22 @@ body {
 .pink-text-gradient {
   background: #ec008c;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top,
-      #ec008c,
-      #fc6767);
+  background: -webkit-linear-gradient(to top, #ec008c, #fc6767);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top,
-      #ec008c,
-      #fc6767);
+  background: linear-gradient(to top, #ec008c, #fc6767);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.box {
+  /* background: red; */
+  /* color: white; */
+  margin: 0 0 1rem;
+  display: inline-block;
+  width: 100%;
+  /* text-align: center; */
+  font-weight: bold;
+  border: 2px solid red;
 }

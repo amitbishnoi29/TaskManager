@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from 'next-themes';
 import { Poppins as FontSans } from "next/font/google";
+import { NextUIProvider } from '@nextui-org/react'
+import Navigation from "@/components/Navigation";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -16,9 +18,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <ThemeProvider attribute="class">
-        <body className={fontSans.className}>{children}</body>
-      </ThemeProvider>
+      <NextUIProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <body className={`${fontSans.className} bg-lightBg dark:bg-darkBg`}>{children}</body>
+          <Navigation />
+        </ThemeProvider>
+      </NextUIProvider>
     </html>
   );
 }
