@@ -7,6 +7,7 @@ export const taskData = [
     priority: "High",
     location: "Office",
     status: "To do",
+    created: "2024-07-15",
   },
   {
     id: 2,
@@ -15,6 +16,7 @@ export const taskData = [
     dueDate: "2024-08-09",
     priority: "Low",
     status: "Done",
+    created: "2024-07-20",
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const taskData = [
     priority: "Medium",
     location: "Conference Room",
     status: "Doing",
+    created: "2024-07-25",
   },
   {
     id: 4,
@@ -33,6 +36,7 @@ export const taskData = [
     priority: "High",
     location: "Downtown Clinic",
     status: "To do",
+    created: "2024-07-28",
   },
   {
     id: 5,
@@ -41,6 +45,7 @@ export const taskData = [
     dueDate: "2024-08-20",
     priority: "Medium",
     status: "To do",
+    created: "2024-07-30",
   },
   {
     id: 6,
@@ -49,6 +54,7 @@ export const taskData = [
     dueDate: "2024-08-07",
     priority: "High",
     status: "Done",
+    created: "2024-07-22",
   },
   {
     id: 7,
@@ -57,6 +63,7 @@ export const taskData = [
     dueDate: "2024-08-25",
     priority: "Low",
     status: "To do",
+    created: "2024-08-01",
   },
   {
     id: 8,
@@ -66,6 +73,7 @@ export const taskData = [
     priority: "Medium",
     location: "Service Center",
     status: "To do",
+    created: "2024-08-03",
   },
   {
     id: 9,
@@ -75,6 +83,7 @@ export const taskData = [
     priority: "Low",
     location: "Parents' House",
     status: "To do",
+    created: "2024-08-05",
   },
   {
     id: 10,
@@ -84,5 +93,6 @@ export const taskData = [
     priority: "High",
     location: "Office",
     status: "Done",
+    created: "2024-07-18",
   },
 ];

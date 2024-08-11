@@ -3,8 +3,9 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 import useTaskStore from "@/store/store";
-import { priorityColor } from "@/constants";
+import { priorityColor, statusColor } from "@/constants";
 import { CalendarIcon } from "@heroicons/react/24/outline";
+import moment from "moment/moment";
 
 ChartJS.register(Tooltip, Legend, ArcElement);
 
@@ -23,9 +24,13 @@ const Dashboard = () => {
   const { completed, doing, pending, total } = getTaskStats();
 
   const upcomingTasks = tasks.filter(
-    (task) => new Date(task.dueDate) >= new Date() && task.status !== "Done"
+    (task) => new Date(task.dueDate) >= new Date()
   );
   const highPriorityTasks = tasks.filter((task) => task.priority === "High");
+
+  const overdueTasks = tasks.filter(
+    (task) => new Date(task.dueDate) < new Date() && task.status !== "Done"
+  );
 
   const getPercentage = (val) => {
     if (total === 0) return 0;
@@ -84,7 +89,8 @@ const Dashboard = () => {
     <div className="pb-20 max-w-[90vw] mx-auto">
       <h1 className="text-4xl font-medium my-3">Dashboard</h1>
       <section className="flex flex-row flex-wrap gap-4 mb-4">
-        <div id="task-statuses" className="p-4 bg-lightCard dark:bg-darkCard flex-grow dark:bg-gray-900 rounded-lg shadow-lg">
+        {/* <section className="grid grid-cols-3 gap-4 mb-4"> */}
+        <div id="task-statuses" className="p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-lg">
           <div className="title flex items-center justify-between mb-4">
             <h2 className="text-lg font-medium">Task Status Overview</h2>
             <span className="text-right">Total Tasks: {total}</span>
@@ -129,7 +135,7 @@ const Dashboard = () => {
             {/* <span className="text-right">Total Tasks: {total}</span> */}
           </div>
           <div className="flex items-center justify-between gap-4">
-            <div className="h-50 w-[200px]">
+            <div className="h-50 w-40">
               {overview.map(item => (
                 <Doughnut
                   key={item.id}
@@ -159,14 +165,17 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-col gap-3">
               {overview[0].labels.map((labelName, index) => (
-                <div key={labelName} className="flex items-center justify-between gap-8 border border-x-0 border-t-0 pb-2">
-                  <p className="text-sm">{labelName}</p> <span className={`w-3 h-3 rounded-full bg-[${overview[0].backgroundColor[index]}]`}></span>
+                <div key={labelName} className="flex items-center justify-between gap-4 border border-x-0 border-t-0 pb-2">
+                  <p className="text-sm">
+                    {labelName}
+                  </p>
+                  <span style={{ backgroundColor: overview[0].backgroundColor[index] }} className={`w-3 h-3 rounded-full`}></span>
                 </div>
               ))}
             </div>
           </div>
         </div>
-        <div id="tasks-percentage" className="p-4 bg-lightCard dark:bg-darkCard dark:bg-gray-900 rounded-lg shadow-lg">
+        <div id="tasks-percentage" className="p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-lg">
           <div className="title flex items-center justify-between mb-4">
             <h2 className="text-lg font-medium">Tasks Distrubution</h2>
             {/* <span className="text-right">Total Tasks: {total}</span> */}
@@ -174,7 +183,7 @@ const Dashboard = () => {
           <div className="flex flex-col">
             {distribution.map(({ label, percentage }) => (
               <>
-                <div className="py-3 flex items-center justify-between gap-8 border border-dashed border-0 border-b">
+                <div className="py-3 flex items-center justify-between gap-20 border border-dashed border-0 border-b">
                   <p className="text-sm">{label}</p> <span>{percentage}%</span>
                 </div>
               </>
@@ -183,15 +192,16 @@ const Dashboard = () => {
         </div>
       </section>
 
-      <section className="flex flex-wrap">
+      {/* <section className="flex flex-wrap gap-4"> */}
+      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="bg-white p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-xl ">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-md font-semibold"><span className="red-text-gradien">High Priority </span>Tasks</h2>
           </div>
           {highPriorityTasks.length === 0 ? (
-            <p className="text-gray-500">No high-priority tasks</p>
+            <p className="text-gray-500 text-center">No high-priority tasks</p>
           ) : (
-            <div className="max-h-[350px] overflow-y-auto">
+            <div className="max-h-[350px] overflow-y-auto w-full">
               {highPriorityTasks.map((task) => (
                 <div key={task.id} className="p-2 border-b border-gray-200 flex flex-col gap-1">
                   <div className="flex items-center justify-between">
@@ -202,8 +212,64 @@ const Dashboard = () => {
                       {task.priority}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-600">{task.description}</p>
-                  <p className="text-xs text-gray-500 flex items-center gap-1 mt-2"><span><CalendarIcon height={15}/></span>{task.dueDate}</p>
+                  <p title={task.description} className="text-xs text-gray-600 max-w-[90%] truncate">
+                    {task.description}
+                  </p>
+                  {/* <p className="text-xs text-gray-500 flex items-center gap-1 mt-2">DUE: <span><CalendarIcon height={15} /></span>{task.dueDate}</p> */}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="bg-white p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-xl ">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-md font-semibold"><span className="red-text-gradien">Upcoming </span>Tasks</h2>
+          </div>
+          {highPriorityTasks.length === 0 ? (
+            <p className="text-gray-500 text-center">No upcoming tasks</p>
+          ) : (
+            <div className="max-h-[350px] overflow-y-auto no-scrollbar">
+              {upcomingTasks.map((task) => (
+                <div key={task.id} className="p-2 border-b border-gray-200 flex flex-col gap-1">
+                  <div className="flex items-center justify-between gap-12">
+                    <span className="text-md font-normal">{task.title}</span>
+                    <span
+                      className={`py-1 px-2 ${statusColor[task.status]} text-xs font-medium rounded-full`}
+                    >
+                      {task.status}
+                    </span>
+                  </div>
+                  {/* <p className="text-xs text-gray-600">{task.description}</p> */}
+                  <p className="text-xs text-gray-500 flex items-center gap-1 mt-2">
+                    <span><CalendarIcon height={15} /></span>{moment(task.dueDate).format('D MMM, YYYY')}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="bg-white p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-xl ">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-md font-semibold"><span className="red-text-gradien">Overdue </span>Tasks</h2>
+          </div>
+          {highPriorityTasks.length === 0 ? (
+            <p className="text-gray-500 text-center">No upcoming tasks</p>
+          ) : (
+            <div className="max-h-[350px] overflow-y-auto no-scrollbar">
+              {overdueTasks.map((task) => (
+                <div key={task.id} className="p-2 border-b border-gray-200 flex flex-col gap-1">
+                  <div className="flex items-center justify-between gap-12">
+                    <span className="text-md font-normal">{task.title}</span>
+                    <span
+                      className={`py-1 px-2 ${statusColor[task.status]} text-xs font-medium rounded-full`}
+                    >
+                      {task.status}
+                    </span>
+                  </div>
+                  {/* <p className="text-xs text-gray-600">{task.description}</p> */}
+                  <p className="text-xs text-gray-500 flex items-center gap-1 mt-2">
+                    <span><CalendarIcon height={15} /></span>{moment(task.dueDate).format('D MMM, YYYY')}
+                  </p>
                 </div>
               ))}
             </div>
