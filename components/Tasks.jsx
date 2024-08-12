@@ -8,8 +8,8 @@ const Tasks = () => {
   return (
     <>
       <header className="flex justify-between items-center mb-4">
-        <h1 className="text-4xl py-4 blue-text-gradient font-bold">
-          Task Manager
+        <h1 className="text-4xl py-4 font-bold">
+          Tasks
         </h1>
       </header>
       <div>

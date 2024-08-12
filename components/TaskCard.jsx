@@ -4,6 +4,8 @@ import { useSwipeable } from "react-swipeable";
 import useTaskStore from "@/store/store";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { priorityColor, statusColor } from "@/constants";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function TaskCard({
   id,
@@ -12,11 +14,17 @@ export default function TaskCard({
   priority,
   description,
   status,
-  onEdit,
-  onDelete,
   updateTaskStatus,
 }) {
-
+  const router = useRouter();
+  const { deleteTask } = useTaskStore();
+  const onEdit = () => {
+    router.push(`/task/${id}`);
+  };
+  const onDelete = (taskId) => {
+    deleteTask(taskId);
+    toast.success("Successfully deleted task");
+  };
   const handlers = useSwipeable({
     onSwipedLeft: () => setIsSwiped(true),
     onSwipedRight: () => setIsSwiped(false),
@@ -32,7 +40,7 @@ export default function TaskCard({
   };
 
   return (
-    <div className="relative w-full bg-lightCard dark:bg-darkCard cursor-pointer overflow-hidden border shadow-lg rounded-xl transition-transform transform hover:scale-105 hover:shadow-xl">
+    <div className="relative w-full bg-lightCard dark:bg-darkCard overflow-hidden border shadow-lg rounded-xl transition-transform transform hover:shadow-xl">
       <div
         className={`absolute inset-y-0 right-0 w-1/4 flex items-center transition-all duration-300 ease-in-out ${
           isSwiped ? "translate-x-0" : "translate-x-full"
@@ -45,7 +53,7 @@ export default function TaskCard({
           Edit
         </button>
         <button
-          onClick={onDelete}
+          onClick={() => onDelete(id)}
           className="text-white text-center w-1/2 h-full bg-red-500 hover:text-gray-200 text-sm font-medium"
         >
           Delete
@@ -75,7 +83,7 @@ export default function TaskCard({
                 type="checkbox"
                 checked={status === "Done"}
                 onChange={handleCheckboxChange}
-                className="h-5 w-5 text-blue-500 rounded border-gray-300 focus:ring-blue-400"
+                className="cursor-pointer h-5 w-5 text-blue-500 rounded border-gray-300 focus:ring-blue-400"
               />
             </div>
           </div>

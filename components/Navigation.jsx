@@ -7,7 +7,7 @@ export default function Navigation() {
   const pathName = usePathname();
   const getActive = href => pathName === href ? 'text-blue-500' : 'text-gray-500'
   return (
-    <nav className="fixed bottom-0 left-0 right-0 backdrop-blur-xl shadow-xl p-4 flex justify-around">
+    <nav className="fixed z-10 bottom-0 left-0 right-0 backdrop-blur-xl shadow-xl p-4 flex justify-around">
       {navItems.map((item) => (
         <Link
           key={item.label}
