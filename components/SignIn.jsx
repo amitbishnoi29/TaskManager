@@ -158,7 +158,7 @@ export default function SignIn() {
 
         {!verifying && (
           <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
               href="/sign-up"
               className="font-medium text-blue-500 hover:text-blue-600"
