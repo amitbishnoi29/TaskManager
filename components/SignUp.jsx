@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useSignUp } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import OTPInput from "@/components/OTPInput";d
+import OTPInput from "@/components/OTPInput";
 import Link from "next/link";
 
 export default function SignUp() {
