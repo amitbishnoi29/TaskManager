@@ -173,3 +173,35 @@ npm run dev
 Open your browser and go to
 
 http://localhost:3000
+
+```
+
+## Design Choices and Trade-Offs
+
+### 1. User Interface and User Experience (UI/UX)
+- **Design Choice:** The app's UI is designed to be clean and intuitive, resembling familiar task management tools. Color-coded priority levels, a floating action button (FAB), and a swipeable task card interface enhance usability.
+- **Trade-Off:** Advanced customization options, like custom themes or drag-and-drop task organization, were deprioritized. These features can be added in future iterations based on user feedback.
+
+### 2. Responsive Design
+- **Design Choice:** The application is responsive, ensuring functionality on both desktop and mobile devices. Tailwind CSS was used for its utility-first approach, creating a consistent design across different screen sizes.
+- **Trade-Off:** Complex layouts, such as the dashboard with multiple charts, were simplified for mobile users to ensure readability and usability.
+
+### 3. Authentication with Clerk
+- **Design Choice:** OTP authentication using Clerk was implemented to provide secure and modern login. This choice balances security and convenience.
+- **Trade-Off:** Implementing OTP authentication added complexity to the user flow. However, the trade-off enhances security and user convenience. Future considerations may include adding social logins.
+
+### 4. State Management
+- **Design Choice:** Zustand was chosen for its simplicity and lightweight nature, making global state management straightforward without the overhead of more complex libraries.
+- **Trade-Off:** Zustand's simplicity means fewer built-in features for advanced scenarios. The trade-off was acceptable given the app's scale, where complex state management was unnecessary.
+
+### 5. Task Search and Filtering
+- **Design Choice:** A search bar with debouncing, powered by lodash, allows users to filter tasks by keywords, status, and priority. Filtering is done client-side for faster feedback.
+- **Trade-Off:** Client-side filtering works well for the current app scale. However, server-side filtering might be necessary to handle larger datasets efficiently as the app grows.
+
+### 6. Performance Optimization
+- **Design Choice:** The app is optimized using Next.js 14 features such as server-side rendering (SSR) and static site generation (SSG), ensuring fast load times.
+- **Trade-Off:** These optimizations require careful management of data fetching and caching. Using SSR and SSG could add complexity to dynamic features that might benefit from client-side rendering.
+
+### 7. Mapping and Location Selection
+- **Design Choice:** The location-based reminder feature was integrated with a map component, adding a unique dimension to task management.
+- **Trade-Off:** Incorporating a map introduced dependencies on external libraries and added considerations for mobile responsiveness, slightly increasing the learning curve for users unfamiliar with map interactions.
