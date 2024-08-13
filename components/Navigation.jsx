@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const pathName = usePathname();
-  console.log(pathName);
   
   if (publicPaths.includes(pathName)) return null;
   const getActive = (href) =>
