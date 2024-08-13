@@ -59,7 +59,7 @@ export default function TaskCard({
           Delete
         </button>
       </div>
-      {/* Main content */}
+     
       <div
         {...handlers}
         className={`relative p-4 transition-transform duration-300 ease-in-out ${

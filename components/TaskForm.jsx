@@ -10,7 +10,7 @@ import {
 } from "react-leaflet";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import L from "leaflet";
-import toast from "react-hot-toast"; // Import react-hot-toast for notifications
+import toast from "react-hot-toast";
 import useTaskStore from "@/store/store";
 import { v4 as uuid } from "uuid";
 
@@ -48,7 +48,7 @@ const TaskForm = ({ task, isAdding }) => {
       editTask(newTask);
     }
     toast.success("Data saved successfully");
-    router.push("/"); // Redirect to Home after saving
+    router.push("/"); 
   };
 
   const customIcon = L.divIcon({
