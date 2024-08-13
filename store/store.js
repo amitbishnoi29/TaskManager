@@ -4,7 +4,7 @@ import { taskData } from '../data/tasks';
 const useTaskStore = create((set) => ({
     tasks: taskData,
     addTask: (newTask) => set((state) => ({
-        tasks: [...state.tasks, { ...newTask}]
+        tasks: [{ ...newTask},...state.tasks]
     })),
     editTask: (updatedTask) => set((state) => ({
         tasks: state.tasks.map((task) =>

@@ -101,8 +101,8 @@ const TaskForm = ({ task, isAdding }) => {
 
   return (
     <div className="h-full pb-20 bg-lightBg dark:bg-darkBg">
-      <div className="p-6">
-        <div className="flex flex-col items-start mb-4">
+      <div className="px-6">
+        <div className="flex gap-4 items-center mb-4">
           <button
             onClick={() => router.back()}
             className="mr-4 text-gray-600 hover:text-gray-800 flex items-center gap-2 dark:text-gray-300 dark:hover:text-gray-100"
@@ -111,12 +111,12 @@ const TaskForm = ({ task, isAdding }) => {
             <span>Back</span>
             <hr />
           </button>
-          <h2 className="text-2xl mt-4 font-semibold text-gray-900 dark:text-gray-100">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
             {task ? "Edit Task" : "Add Task"}
           </h2>
         </div>
-        <div className="flex flex-col md:flex-row h-full">
-          <div className="md:w-1/2 p-6 bg-lightCard dark:bg-darkCard rounded-lg">
+        <div className="flex flex-col gap-4 md:flex-row h-full">
+          <div className="md:w-1/2 p-6 bg-lightCard dark:bg-darkCard rounded-xl">
             <div className="mb-4">
               <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">
                 Title
@@ -125,7 +125,7 @@ const TaskForm = ({ task, isAdding }) => {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full p-2 border text-sm rounded-md border-gray-300 dark:border-gray-600"
+                className="w-full p-2 bg-lightBg dark:bg-darkBg border text-sm rounded-md border-gray-300 dark:border-gray-600"
                 required
               />
             </div>
@@ -136,7 +136,7 @@ const TaskForm = ({ task, isAdding }) => {
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full p-2 border text-sm rounded-md border-gray-300 dark:border-gray-600"
+                className="w-full p-2 bg-lightBg dark:bg-darkBg border text-sm rounded-md border-gray-300 dark:border-gray-600"
                 required
               />
             </div>
@@ -148,7 +148,7 @@ const TaskForm = ({ task, isAdding }) => {
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="w-full p-2 border text-sm rounded-md border-gray-300 dark:border-gray-600"
+                className="w-full p-2 bg-lightBg dark:bg-darkBg border text-sm rounded-md border-gray-300 dark:border-gray-600"
                 required
               />
             </div>
@@ -159,7 +159,7 @@ const TaskForm = ({ task, isAdding }) => {
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
-                className="w-full p-2 border text-sm rounded-md border-gray-300 dark:border-gray-600"
+                className="w-full p-2 border bg-lightBg dark:bg-darkBg text-sm rounded-md border-gray-300 dark:border-gray-600"
                 required
               >
                 <option value="High">High</option>
@@ -175,8 +175,9 @@ const TaskForm = ({ task, isAdding }) => {
                 type="text"
                 value={address}
                 readOnly
+                rows={4}
                 // onChange={(e) => setDueDate(e.target.value)}
-                className="w-full text-gray-500 text-sm p-2 border text-muted rounded-md outline-none border-gray-300 dark:border-gray-600 "
+                className="w-full text-gray-500 bg-lightBg dark:bg-darkBg text-sm p-2 border text-muted rounded-md outline-none border-gray-300 dark:border-gray-600 "
                 required
               />
             </div>

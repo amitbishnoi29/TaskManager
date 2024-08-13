@@ -4,17 +4,16 @@ import { NextResponse } from "next/server";
 const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
 
 export default clerkMiddleware((auth, request) => {
-  if (!isPublicRoute(request)) {
-    // this will open the default sign in and sign up pages of the clerk
-    auth().protect();
-    const { userId } = auth();
-
-    // If the user is not logged in, redirect to the /sign-in page
-    if (!userId) {
-      //   const path = request.nextUrl.pathname;
-      //   url.pathname = "/sign-in";
-      return NextResponse.redirect(new URL("sign-in", request.url));
-    }
+  const { userId } = auth();
+  // this will open the default sign in and sign up pages of the clerk
+  // auth().protect();
+  // If the user is not logged in, redirect to the /sign-in page
+  // const path = request.nextUrl.pathname;
+  if (userId && isPublicRoute(request)) {
+    //   url.pathname = "/sign-in";
+    return NextResponse.redirect(new URL("/", request.url));
+  } else if (!userId && !isPublicRoute(request)) {
+    return NextResponse.redirect(new URL("sign-in", request.url));
   }
 });
 

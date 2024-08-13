@@ -16,9 +16,10 @@ module.exports = {
       colors: {
         lightBg: '#F0F5F9',
         // lightBg: "linear-gradient(to right, #7f7f7f, #2c2d3d)",
-        darkBg: '#000000',
+        darkBg: '#030c1a',
+        // darkBg: '#000',
         lightCard: '#fff',
-        darkCard: '#000'
+        darkCard: '#010e21'
       }
     },
   },

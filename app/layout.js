@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 import { Toaster } from "react-hot-toast";
 import { ClerkProvider, UserButton } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
+import NextTopLoader from "nextjs-toploader";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -27,10 +28,13 @@ export default function RootLayout({ children }) {
           href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
         />
       </head>
-      <NextUIProvider>
+      {/* <NextUIProvider> */}
         <ThemeProvider attribute="class" defaultTheme="dark">
           <ClerkProvider>
-            <body className={`${fontSans.className} bg-lightBg dark:bg-darkBg mt-[90px]`}>
+            <body
+              className={`${fontSans.className} bg-lightBg dark:bg-darkBg mt-[90px]`}
+            >
+              <NextTopLoader />
               <Navbar />
               {children}
               <Navigation />
@@ -38,7 +42,7 @@ export default function RootLayout({ children }) {
             </body>
           </ClerkProvider>
         </ThemeProvider>
-      </NextUIProvider>
+      {/* </NextUIProvider> */}
     </html>
   );
 }

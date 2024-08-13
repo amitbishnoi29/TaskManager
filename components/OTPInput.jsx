@@ -5,6 +5,7 @@ export default function OTPInput({
   setCode,
   handleVerification,
   loading,
+  errors,
 }) {
   const handleChange = (e, index) => {
     const value = e.target.value;

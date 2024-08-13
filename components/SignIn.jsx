@@ -5,6 +5,8 @@ import { useSignIn } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { countries } from "@/data/countries";
 import OTPInput from "@/components/OTPInput";
+import Link from "next/link";
+import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
 
 export default function SignIn() {
   const { isLoaded, signIn, setActive } = useSignIn();
@@ -12,10 +14,12 @@ export default function SignIn() {
   const [phone, setPhone] = React.useState("");
   const [countryCode, setCountryCode] = React.useState("+91");
   const [code, setCode] = React.useState("");
-  const [loading, setLoading] = React.useState(false); // Loading state
+  const [loading, setLoading] = React.useState(false);
+  const [errors, setErrors] = React.useState();
   const router = useRouter();
 
   async function handleSubmit(e) {
+    setErrors(null);
     setLoading(true);
     e.preventDefault();
 
@@ -42,6 +46,7 @@ export default function SignIn() {
         setVerifying(true);
       }
     } catch (err) {
+      if (isClerkAPIResponseError(err)) setErrors(err.errors);
       console.error("Error:", JSON.stringify(err, null, 2));
     } finally {
       setLoading(false);
@@ -49,6 +54,7 @@ export default function SignIn() {
   }
 
   async function handleVerification(e) {
+    setErrors(null);
     setLoading(true);
     e.preventDefault();
 
@@ -64,17 +70,19 @@ export default function SignIn() {
         await setActive({ session: signInAttempt.createdSessionId });
         router.push("/");
       } else {
+        if (isClerkAPIResponseError(err)) setErrors(err.errors);
         console.error(signInAttempt);
       }
     } catch (err) {
       console.error("Error:", JSON.stringify(err, null, 2));
+      console.log(err);
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="flex items-center justify-center min-h-[80vh] bg-gray-100 dark:bg-gray-900">
+    <div className="flex items-center justify-center min-h-[80vh] bg-gray-100 dark:bg-darkBg">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <h4 className="mb-2 text-2xl font-bold text-center text-gray-900 dark:text-gray-100">
           Welcome to Task Manager
@@ -85,6 +93,7 @@ export default function SignIn() {
 
         {verifying ? (
           <OTPInput
+            errors={errors}
             code={code}
             setCode={setCode}
             handleVerification={handleVerification}
@@ -139,16 +148,23 @@ export default function SignIn() {
             </button>
           </form>
         )}
+        {errors && (
+          <ul className="text-center text-red-400 text-xs mt-4">
+            {errors.map((el, index) => (
+              <li key={index}>{el.longMessage}</li>
+            ))}
+          </ul>
+        )}
 
         {!verifying && (
           <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
             Don't have an account?{" "}
-            <a
+            <Link
               href="/sign-up"
               className="font-medium text-blue-500 hover:text-blue-600"
             >
               Sign up
-            </a>
+            </Link>
           </p>
         )}
       </div>

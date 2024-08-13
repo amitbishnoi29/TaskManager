@@ -40,7 +40,7 @@ export default function TaskCard({
   };
 
   return (
-    <div className="relative w-full bg-lightCard dark:bg-darkCard overflow-hidden border shadow-lg rounded-xl transition-transform transform hover:shadow-xl">
+    <div className="relative w-full bg-lightCard dark:bg-darkCard overflow-hidden border dark:border-gray-800 shadow-lg rounded-xl transition-transform transform hover:shadow-xl">
       <div
         className={`absolute inset-y-0 right-0 w-1/4 flex items-center transition-all duration-300 ease-in-out ${
           isSwiped ? "translate-x-0" : "translate-x-full"

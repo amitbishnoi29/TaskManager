@@ -1,7 +1,18 @@
 "use client";
 import React from "react";
 import { Bar, Doughnut, Line, Pie } from "react-chartjs-2";
-import { Chart as ChartJS, Tooltip, Legend, ArcElement, BarElement, CategoryScale, LinearScale, LineElement, Title, PointElement } from "chart.js";
+import {
+  Chart as ChartJS,
+  Tooltip,
+  Legend,
+  ArcElement,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  Title,
+  PointElement,
+} from "chart.js";
 import useTaskStore from "@/store/store";
 import { priorityColor, statusColor } from "@/constants";
 import { CalendarIcon } from "@heroicons/react/24/outline";
@@ -150,7 +161,7 @@ const Dashboard = () => {
     <div className="pb-20 max-w-[90vw] mx-auto">
       <h1 className="text-4xl font-medium my-3">Dashboard</h1>
       {/* <section className="flex flex-row flex-wrap gap-4 mb-4"> */}
-        <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         <div
           id="task-statuses"
           className="p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-lg"
@@ -264,8 +275,10 @@ const Dashboard = () => {
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Line Chart for Task Completion Over Time */}
+      {/* Line Chart for Task Completion Over Time */}
+      <section className="grid md:grid-cols-2 gap-4 mb-4">
         <div
           id="task-completion-line"
           className="p-4 bg-lightCard dark:bg-darkCard rounded-lg shadow-lg"
@@ -307,7 +320,7 @@ const Dashboard = () => {
               {highPriorityTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="p-2 border-b border-gray-200 flex flex-col gap-1"
+                  className="p-2 border-b border-gray-200 dark:border-gray-900 flex flex-col gap-1"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-md font-normal">{task.title}</span>
@@ -337,14 +350,14 @@ const Dashboard = () => {
               <span className="red-text-gradien">Upcoming </span>Tasks
             </h2>
           </div>
-          {highPriorityTasks.length === 0 ? (
+          {upcomingTasks.length === 0 ? (
             <p className="text-gray-500 text-center">No upcoming tasks</p>
           ) : (
             <div className="max-h-[350px] overflow-y-auto no-scrollbar">
               {upcomingTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="p-2 border-b border-gray-200 flex flex-col gap-1"
+                  className="p-2 border-b border-gray-200 dark:border-gray-900 flex flex-col gap-1"
                 >
                   <div className="flex items-center justify-between gap-12">
                     <span className="text-md font-normal">{task.title}</span>
@@ -374,14 +387,14 @@ const Dashboard = () => {
               <span className="red-text-gradien">Overdue </span>Tasks
             </h2>
           </div>
-          {highPriorityTasks.length === 0 ? (
+          {overdueTasks.length === 0 ? (
             <p className="text-gray-500 text-center">No upcoming tasks</p>
           ) : (
             <div className="max-h-[350px] overflow-y-auto no-scrollbar">
               {overdueTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="p-2 border-b border-gray-200 flex flex-col gap-1"
+                  className="p-2 border-b border-gray-200 dark:border-gray-900 flex flex-col gap-1"
                 >
                   <div className="flex items-center justify-between gap-12">
                     <span className="text-md font-normal">{task.title}</span>
