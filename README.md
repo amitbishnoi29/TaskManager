@@ -141,7 +141,7 @@ CLERK_SECRET_KEY=your_key
 
 ```bash
 Go to "https://dashboard.clerk.com/sign-in?sign_in_force_redirect_url=https%3A%2F%2Fdashboard.clerk.com&redirect_url=https%3A%2F%2Fclerk.com%2F"
-npm install
+
 
 5.  **Run the Development Server:**
 
